@@ -11,6 +11,14 @@ def check(seq): # 나쁜수열인지 좋은수열인지 체크
                 return False
     return True
 
+def check(num): # 더 깔끔한 체크함수. 체크한 문자열 부분은 안봐도 되니 뒤쪽에 추가되는 것들만 보기
+    length = len(num)
+    for idx in range(1, length//2 + 1):
+        if num[-idx:] == num[-(idx*2):-idx]:
+            return False
+    else:
+        return True
+
 
 
 def dfs(num, seq): # 숫자 붙인게 체크에 통과하면 seq를 업데이트
