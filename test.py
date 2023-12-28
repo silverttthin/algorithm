@@ -1,1 +1,5 @@
-print(min([1,3],[2,15]))
+from itertools import combinations as cb
+
+
+
+print(list(cb(range(6),2)))
