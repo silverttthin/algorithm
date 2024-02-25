@@ -28,7 +28,7 @@ def dfs(r,c, movecnt):
     if movecnt > ans: 
         return
 
-    if r == jr and c == jc : # 
+    if r == jr and c == jc : 
         if board[r][c] >= ans: return
         ans = movecnt
         return

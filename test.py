@@ -1,5 +1,2 @@
-from itertools import combinations as cb
-
-
-
-print(list(cb(range(6),2)))
+a=1234
+print(list(map(int,str(a))))
