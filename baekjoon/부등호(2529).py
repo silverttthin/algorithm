@@ -6,26 +6,28 @@ sys.stdin = open('input.txt','r')
 k = int(input())
 
 signs = input().split()
-num = [-1] * (k+1)
+num = [-1] * (k+1) # 고른 숫자들을 담아 최종 숫자 구현용 변수
 check = [0] * 10
 ans = [-1, 10000000000]
 compare_list = ans[:]
-
+a = []
 def dfs(stage):
-    global num, check
+    global num, check, a
 
     if stage == k+1:
-        str_tmp = list(map(str,num))
-        int_tmp = int(''.join(str_tmp))
+        
+        # str_tmp = list(map(str,num))
+        # int_tmp = int(''.join(str_tmp))
 
         
-        if compare_list[0] < int_tmp:
-            ans[0] = ''.join(str_tmp)
-            compare_list[0] = int_tmp
-        if compare_list[1] > int_tmp:
-            ans[1] = ''.join(str_tmp)
-            compare_list[1] = int_tmp
+        # if compare_list[0] < int_tmp:
+        #     ans[0] = ''.join(str_tmp)
+        #     compare_list[0] = int_tmp
+        # if compare_list[1] > int_tmp:
+        #     ans[1] = ''.join(str_tmp)
+        #     compare_list[1] = int_tmp
         return
+
 
     if stage == 0:
         # 첨엔 적당히 아무거나
@@ -57,5 +59,7 @@ def dfs(stage):
 
 dfs(0)
 
-for i in range(2):
-    print(ans[i])
+
+
+# for i in range(2):
+#     print(ans[i])
