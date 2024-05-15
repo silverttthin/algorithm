@@ -15,7 +15,8 @@ prev_j = [-1]*n # ith까지의 LIS의 [-2]번째 요소
 for idx, block in enumerate(blocks):
     height_LTS[idx] += block[1]
 
-
+# 밑면넓이는 쌓을수 있게 정렬된 상태
+# 무게가 쌓을 수 있을때 높이를 비교해 높이 lis 
 for i in range(1, n):
     for j in range(i):
         if blocks[j][2] > blocks[i][2] and height_LTS[i] < height_LTS[j]+blocks[i][1]:
