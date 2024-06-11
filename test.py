@@ -1,33 +1,31 @@
-import sys
-sys.stdin = open('input.txt','r')
-from collections import deque
+import sys;sys.stdin=open('input.txt','r')
 
-col,row = map(int,input().split())
-m = [[int(c) for c in input().rstrip()] for _ in range(row)]
+from collections import defaultdict
 
-atk_c, atk_r = map(lambda x : x-1, map(int,input().split()))
-visited = [[False] * col for _ in range(row)]
+weight_map = defaultdict(int)
+
+n = int(input())
+words = [input() for _ in range(n)]
+
+for word in words:
+    l = len(word)
+    for idx, c in enumerate(word):
+        weight_map[c] += 10**(l-1-idx) # defaultdict를 쓴 이유
+        # 각 알파벳의 위치의 자릿수를 더해간다 
+
+weight_map = sorted(weight_map.values(), reverse=True)
+
+# 가중치비교해 알파벳에 값을 부여해 계산하기보다
+# !!=> 이미 구한 내림차순 가중치 배열에 9부터 더하면 됨
+# 이미 해당 알파벳이 words의 각 단어에서 위치한 자릿수는 결정된 상태이니
+# 자릿수가 가장 큰 순서대로 그리디하게 9부터 내림차순으로 부여하면 되니
+
+ans, num = 0, 9
+for digit in weight_map:
+    ans += num * digit
+    num-=1
+print(ans)
 
 
-dx,dy = [-1,0,1,0],[0,-1,0,1]
-def bfs():
-    q = deque([[atk_r,atk_c,3]])
-    visited[atk_r][atk_c] = True
-    m[atk_r][atk_c] = 0
 
-    while q:
-        r,c,cnt = q.popleft()
-        max_cnt = cnt
 
-        for k in range(4):
-            nx = c + dx[k]
-            ny = r + dy[k]
-            if 0<=nx<col and 0<=ny<row and m[ny][nx] == 1 and not visited[ny][nx]:
-                q.append([ny,nx,cnt+1])
-                visited[ny][nx] = True
-                # m[ny][nx] = 0 
-            
-    return max_cnt
-
-print(bfs())
-print(([row.count(1) for row in m]))
